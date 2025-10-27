@@ -35,4 +35,4 @@ Keep your encryption key file (key.key) secure and private
 Anyone with access to the key file can decrypt your messages
 This tool is for educational purposes
 Author
-Mike McGregor
+[Your Name]
