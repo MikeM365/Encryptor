@@ -1,6 +1,3 @@
-# Encryptor
-Simple file encryption/decryption tool using Fernet symmetric encryption. 
-
 # Encryption Tool
 
 A simple file encryption/decryption tool built with Python using Fernet symmetric encryption.
