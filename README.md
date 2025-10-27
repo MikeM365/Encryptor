@@ -19,3 +19,20 @@ This tool allows users to securely encrypt and decrypt messages/files using the 
 ## Installation
 ```bash
 pip install cryptography
+
+Follow the prompts to:
+
+Generate a new encryption key (first time use)
+Enter a message to encrypt
+Decrypt messages using the saved key
+How it Works
+Uses Fernet symmetric encryption (AES 128-bit in CBC mode)
+Generates secure random keys
+Keys are saved locally for future use
+Each encrypted message includes authentication to prevent tampering
+Security Note
+Keep your encryption key file (key.key) secure and private
+Anyone with access to the key file can decrypt your messages
+This tool is for educational purposes
+Author
+Mike McGregor
