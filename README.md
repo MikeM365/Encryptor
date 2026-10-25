@@ -21,9 +21,8 @@ This tool encrypts and decrypts files using a password you supply. Scrypt (a mem
 - `cryptography` library
 
 ## Installation
-```bash
 
-Run the script and follow the prompts to encrypt or decrypt a file.
+Install the dependency with `pip install cryptography`, then run the script and follow the prompts to encrypt or decrypt a file.
 
 ## How It Works
 
