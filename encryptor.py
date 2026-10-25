@@ -1,13 +1,16 @@
 """
-The Encryptor (Educational Stream Cipher)
+The Encryptor (Password-Based File Encryption)
 Author: Mike McGregor
-Purpose: Demonstrates symmetric encryption logic using PBKDF2 key derivation
-         and a custom SHA-256 based stream cipher (XOR).
+Purpose: Encrypts/decrypts files using a password-derived key. Uses scrypt
+         for key derivation (memory-hard, resistant to brute-force password
+         guessing) and AES-256-GCM for authenticated encryption, so both
+         the ciphertext and the file header are protected against tampering.
 
-NOTE: This is an educational implementation to demonstrate the mathematics 
-      of confidentiality. In a production environment, standard libraries 
-      (like AES-GCM via cryptography.io) should be used for compliance.
-"""   
+Format: Each encrypted file begins with a versioned header
+        [MAGIC][VERSION][SALT][NONCE], followed by the AES-GCM ciphertext.
+        The header is passed in as associated data, so tampering with it
+        (not just the ciphertext) causes decryption to fail.
+"""
 
 import os
 import sys
