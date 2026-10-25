@@ -1,38 +1,40 @@
 # Encryption Tool
 
-A simple file encryption/decryption tool built with Python using Fernet symmetric encryption.
+A password-based file encryption/decryption tool built with Python using scrypt key derivation and AES-256-GCM authenticated encryption.
 
 ## Description
-This tool allows users to securely encrypt and decrypt messages/files using the cryptography library's Fernet implementation. Fernet guarantees that a message encrypted using it cannot be manipulated or read without the key.
+
+This tool encrypts and decrypts files using a password you supply. Scrypt (a memory-hard key derivation function) turns that password into a 256-bit key, and AES-256-GCM both encrypts the file and authenticates it — so any tampering with the encrypted file, including its header, causes decryption to fail rather than silently succeeding.
 
 ## Features
-- Generate encryption keys
-- Encrypt messages with strong symmetric encryption
-- Decrypt messages with the correct key
-- Key management (save/load encryption keys)
-- User-friendly command-line interface
+
+- Derive an encryption key from a password using scrypt
+- Encrypt files with AES-256-GCM authenticated encryption
+- Decrypt files with the correct password
+- Unique random salt and nonce generated per file, so the same password never produces identical ciphertext twice
+- Versioned, tamper-evident file format
+- Command-line interface
 
 ## Requirements
+
 - Python 3.x
-- cryptography library
+- `cryptography` library
 
 ## Installation
 ```bash
-pip install cryptography
 
-Follow the prompts to:
+Run the script and follow the prompts to encrypt or decrypt a file.
 
-Generate a new encryption key (first time use)
-Enter a message to encrypt
-Decrypt messages using the saved key
-How it Works
-Uses Fernet symmetric encryption (AES 128-bit in CBC mode)
-Generates secure random keys
-Keys are saved locally for future use
-Each encrypted message includes authentication to prevent tampering
-Security Note
-Keep your encryption key file (key.key) secure and private
-Anyone with access to the key file can decrypt your messages
-This tool is for educational purposes
-Author
-[Your Name]
+## How It Works
+
+- Scrypt derives a 256-bit key from your password and a randomly generated salt
+- AES-256-GCM encrypts the file contents and authenticates both the ciphertext and the file header
+- A fresh salt and nonce are generated for every encryption operation
+
+## Security Note
+
+This is password-based — there's no key file to protect, but there's also no recovery if you forget the password. Built for educational purposes to demonstrate authenticated symmetric encryption.
+
+## Author
+
+Mike McGregor
